@@ -1,7 +1,14 @@
 import { Avatar, Input, Text } from "@fluentui/react-components";
 import { SearchRegular } from "@fluentui/react-icons";
+import * as React from "react";
+import { makeStyles, Button } from "@fluentui/react-components";
+import {
+    MicRecord28Regular, Speaker048Filled, BrainCircuitFilled
+} from "@fluentui/react-icons";
+import { Field, Textarea } from "@fluentui/react-components";
+import type { TextareaProps } from "@fluentui/react-components";
 
-export const Header = () => {
+export const Header = (props: Partial<TextareaProps>) => {
     return (
         <div
             style={{
@@ -13,26 +20,31 @@ export const Header = () => {
                 gap: 20,
             }}
         >
-            <div style={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
-                <Input
-                    autoFocus
-                    width={"100%"}
-                    contentBefore={<SearchRegular />}
-                    placeholder="Search messages"
-                    appearance="filled-darker"
-                />
-            </div>
+            <div style={{
+                display: "flex",
+                flexDirection: "column",
+                width: "100%"
+            }}>
+                <div style={{ display: "flex", flexDirection: "row", width: "100%", alignItems: "flex-end", gap: 10 }}>
 
-            <div style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 10 }}>
-                <div style={{ display: "flex", flexDirection: "column" }}>
-                    <Text size={200} align="end">
-                        Oliver Schwendener
-                    </Text>
-                    <Text size={100} align="end">
-                        oliver.schwendener@proton.me
-                    </Text>
+                    <Field label="Output Speech" style={{ flexGrow: 5 }}>
+                        <Textarea style={{fontSize: '60px', height: "80px" }}  {...props} />
+                    </Field>
+                    <Button style={{ height: "80px" }} size="large" appearance="primary" icon={<Speaker048Filled />}>
+                        Speak 
+                    </Button>
+                    <Button style={{ height: "80px" }} size="large" appearance="primary" icon={<BrainCircuitFilled />}>
+                        Generate
+                    </Button>
                 </div>
-                <Avatar size={36} name="Oliver Schwendener" />
+                <div style={{ display: "flex", flexDirection: "row", width: "100%", alignItems: "flex-end", gap: 10 }}>
+                    <Field label="Input Speech" style={{ flexGrow: 5 }}>
+                        <Textarea style={{ height: "80px" }}  {...props} />
+                    </Field>
+                    <Button style={{ height: "80px" }} size="large" appearance="primary" icon={<MicRecord28Regular />}>
+                        Listen
+                    </Button>
+                </div>
             </div>
         </div>
     );

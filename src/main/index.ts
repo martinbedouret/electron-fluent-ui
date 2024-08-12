@@ -8,6 +8,8 @@ const createBrowserWindow = (): BrowserWindow => {
         autoHideMenuBar: true,
         backgroundMaterial: "mica",
         vibrancy: "header",
+        height:900,
+        width:1200,
         webPreferences: {
             preload: preloadScriptFilePath,
         },
